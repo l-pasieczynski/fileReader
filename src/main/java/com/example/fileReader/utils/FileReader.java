@@ -1,4 +1,4 @@
-package com.example.fileReader.application;
+package com.example.fileReader.utils;
 
 import org.springframework.stereotype.Component;
 

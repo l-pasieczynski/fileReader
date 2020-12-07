@@ -1,6 +1,6 @@
 package com.example.fileReader.web;
 
-import com.example.fileReader.application.csv.CSVMapper;
+import com.example.fileReader.application.CSVMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

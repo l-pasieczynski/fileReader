@@ -1,4 +1,4 @@
-package com.example.fileReader.application.csv;
+package com.example.fileReader.application;
 
 import com.example.fileReader.infrastructure.ContactRepository;
 import com.example.fileReader.infrastructure.CustomerRepository;
@@ -65,7 +65,7 @@ public class CSVMapper {
 
     private List<Customer> getCustomers(String filename) {
         try {
-            return com.example.fileReader.application.FileReader.read(filename).stream()
+            return com.example.fileReader.utils.FileReader.read(filename).stream()
                     .map(line -> new Customer().setName(line.split(",")[0])
                             .setSurname(line.split(",")[1])
                             .setAge(Integer.parseInt(line.split(",")[3])))
