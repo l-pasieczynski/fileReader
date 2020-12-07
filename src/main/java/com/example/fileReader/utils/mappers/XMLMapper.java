@@ -1,4 +1,4 @@
-package com.example.fileReader.utils;
+package com.example.fileReader.utils.mappers;
 
 import com.example.fileReader.model.Customer;
 import com.fasterxml.jackson.core.JsonParseException;

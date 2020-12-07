@@ -4,7 +4,7 @@ import com.example.fileReader.infrastructure.ContactRepository;
 import com.example.fileReader.infrastructure.CustomerRepository;
 import com.example.fileReader.model.Contact;
 import com.example.fileReader.model.Customer;
-import com.example.fileReader.utils.CSVMapper;
+import com.example.fileReader.utils.mappers.CSVMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
