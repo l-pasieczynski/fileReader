@@ -13,7 +13,7 @@ public class CSVMapper {
             return FileReader.read(filename).stream()
                     .map(line -> new Customer().setName(line.split(",")[0])
                             .setSurname(line.split(",")[1])
-                            .setAge(Integer.parseInt(line.split(",")[3])))
+                            .setAge(Integer.parseInt(line.split(",")[2])))
                     .collect(Collectors.toList());
         } catch (NumberFormatException numberFormatException) {
             numberFormatException.printStackTrace();

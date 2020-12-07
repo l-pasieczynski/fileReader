@@ -24,11 +24,11 @@ public class CSVService {
     @Autowired
     private ContactRepository contactRepository;
 
-    public void CSVMapToEntityAllFile(String filename) {
+    public void csvMapToEntityAllFile(String filename) {
         customerRepository.saveAll(CSVMapper.getCustomers(filename));
     }
 
-    public void CSVMapToEntityLineByLine(String filename) {
+    public void csvMapToEntityLineByLine(String filename) {
         try {
             bufferedReader = new BufferedReader(new FileReader(filename));
             while ((line = bufferedReader.readLine()) != null) {
@@ -36,27 +36,29 @@ public class CSVService {
                 Customer customer = new Customer();
                 customer.setName(data[0]);
                 customer.setSurname(data[1]);
-                customer.setAge(Integer.parseInt(data[3]));
+                if (!data[2].isEmpty()) {
+                    customer.setAge(Integer.parseInt(data[2]));
+                }
                 customerRepository.save(customer);
 
-                Contact contact = new Contact();
-                contact.setCustomer(customer);
                 for (int i = 4; i < data.length; i++) {
-                    if (data[i].matches("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$")) {
+                    Contact contact = new Contact();
+                    contact.setCustomer(customer);
+                    if (data[i].matches("^(.+)@(.+)$")) {
                         contact.setType(ContactType.EMAIL);
                         contact.setContact(data[i]);
-                    } else if (data[i].matches("(?:\\d{3}-){2}\\d{4}")) {
+                    } else if (data[i].matches("[0-9]{3} [0-9]{3} [0-9]{3}")) {
                         contact.setType(ContactType.PHONE);
                         contact.setContact(data[i]);
-                    } else if (data[i].matches("^(?:([^@/<>'\\\"]+)@)?([^@/<>'\\\"]+)(?:/([^<>'\\\"]*))?$")) {
+                    } else if (data[i].matches("[a-z]+")) {
                         contact.setType(ContactType.JABBER);
                         contact.setContact(data[i]);
                     } else {
                         contact.setType(ContactType.UNKNOWN);
                         contact.setContact(data[i]);
                     }
+                    contactRepository.save(contact);
                 }
-                contactRepository.save(contact);
             }
         } catch (IOException e) {
             e.printStackTrace();

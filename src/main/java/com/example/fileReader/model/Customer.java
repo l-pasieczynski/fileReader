@@ -1,9 +1,8 @@
 package com.example.fileReader.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.ColumnDefault;
+
+import javax.persistence.*;
 
 @Entity
 public class Customer {
@@ -13,6 +12,7 @@ public class Customer {
     private Long id;
     private String name;
     private String surname;
+    @ColumnDefault("null")
     private int age;
 
     public Long getId() {
