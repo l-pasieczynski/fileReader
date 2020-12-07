@@ -12,7 +12,7 @@ public class Contact {
     @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
     @Enumerated(EnumType.ORDINAL)
-    private int type;
+    private ContactType type;
     private String contact;
 
     public Long getId() {
@@ -23,7 +23,7 @@ public class Contact {
         return customer;
     }
 
-    public int getType() {
+    public ContactType getType() {
         return type;
     }
 
@@ -36,7 +36,7 @@ public class Contact {
         return this;
     }
 
-    public Contact setType(int type) {
+    public Contact setType(ContactType type) {
         this.type = type;
         return this;
     }

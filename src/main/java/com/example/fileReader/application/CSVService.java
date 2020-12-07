@@ -3,6 +3,7 @@ package com.example.fileReader.application;
 import com.example.fileReader.infrastructure.ContactRepository;
 import com.example.fileReader.infrastructure.CustomerRepository;
 import com.example.fileReader.model.Contact;
+import com.example.fileReader.model.ContactType;
 import com.example.fileReader.model.Customer;
 import com.example.fileReader.utils.mappers.CSVMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,16 +43,16 @@ public class CSVService {
                 contact.setCustomer(customer);
                 for (int i = 4; i < data.length; i++) {
                     if (data[i].matches("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$")) {
-                        contact.setType(1);
+                        contact.setType(ContactType.EMAIL);
                         contact.setContact(data[i]);
                     } else if (data[i].matches("(?:\\d{3}-){2}\\d{4}")) {
-                        contact.setType(2);
+                        contact.setType(ContactType.PHONE);
                         contact.setContact(data[i]);
                     } else if (data[i].matches("^(?:([^@/<>'\\\"]+)@)?([^@/<>'\\\"]+)(?:/([^<>'\\\"]*))?$")) {
-                        contact.setType(3);
+                        contact.setType(ContactType.JABBER);
                         contact.setContact(data[i]);
                     } else {
-                        contact.setType(0);
+                        contact.setType(ContactType.UNKNOWN);
                         contact.setContact(data[i]);
                     }
                 }
