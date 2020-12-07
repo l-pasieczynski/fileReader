@@ -1,22 +1,22 @@
 package com.example.fileReader.web;
 
-import com.example.fileReader.application.CSVMapper;
+import com.example.fileReader.application.CSVService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HomeController {
+public class FileMapperController {
 
-    private final CSVMapper csvMapper;
+    private final CSVService csvService;
 
-    public HomeController(CSVMapper csvMapper) {
-        this.csvMapper = csvMapper;
+    public FileMapperController(CSVService csvService) {
+        this.csvService = csvService;
     }
 
     @GetMapping("/csv")
     public void CSVParser() {
         String filename = "src/main/resources/dane-osoby.txt";
-        csvMapper.CSVMapToEntityAllFile(filename);
+        csvService.CSVMapToEntityAllFile(filename);
     }
 
     @GetMapping("/xml")

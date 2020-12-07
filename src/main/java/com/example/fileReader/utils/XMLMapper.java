@@ -11,7 +11,7 @@ import java.io.IOException;
 public class XMLMapper {
 
     public static Object XMLMapToEntity(String filename, Class<?> cls)
-            throws JsonParseException, JsonMappingException, IOException {
+            throws IOException {
 
         XmlMapper xmlMapper = new XmlMapper();
         Object object = xmlMapper.readValue(new File(filename), Customer.class);

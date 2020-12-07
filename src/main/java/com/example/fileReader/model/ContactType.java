@@ -8,11 +8,11 @@ public enum ContactType {
 
     private int contactType;
 
-    ContactType(int type){
+    ContactType(int type) {
         contactType = type;
     }
 
-    public int contactType (){
+    public int contactType() {
         return contactType;
     }
 }

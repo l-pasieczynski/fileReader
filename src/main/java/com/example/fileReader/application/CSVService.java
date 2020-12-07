@@ -4,17 +4,16 @@ import com.example.fileReader.infrastructure.ContactRepository;
 import com.example.fileReader.infrastructure.CustomerRepository;
 import com.example.fileReader.model.Contact;
 import com.example.fileReader.model.Customer;
+import com.example.fileReader.utils.CSVMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
-public class CSVMapper {
+public class CSVService {
 
     BufferedReader bufferedReader;
     String line = "";
@@ -25,7 +24,7 @@ public class CSVMapper {
     private ContactRepository contactRepository;
 
     public void CSVMapToEntityAllFile(String filename) {
-        customerRepository.saveAll(getCustomers(filename));
+        customerRepository.saveAll(CSVMapper.getCustomers(filename));
     }
 
     public void CSVMapToEntityLineByLine(String filename) {
@@ -60,19 +59,6 @@ public class CSVMapper {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    private List<Customer> getCustomers(String filename) {
-        try {
-            return com.example.fileReader.utils.FileReader.read(filename).stream()
-                    .map(line -> new Customer().setName(line.split(",")[0])
-                            .setSurname(line.split(",")[1])
-                            .setAge(Integer.parseInt(line.split(",")[3])))
-                    .collect(Collectors.toList());
-        } catch (NumberFormatException numberFormatException) {
-            numberFormatException.printStackTrace();
-            throw new RuntimeException();
         }
     }
 
