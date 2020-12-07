@@ -12,7 +12,6 @@ public class XMLMapper {
             throws IOException {
 
         XmlMapper xmlMapper = new XmlMapper();
-        Object object = xmlMapper.readValue(new File(filename), Customer.class);
-        return object;
+        return xmlMapper.readValue(new File(filename), Customer.class);
     }
 }

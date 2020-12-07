@@ -47,7 +47,7 @@ public class CSVService {
                     if (data[i].matches("^(.+)@(.+)$")) {
                         contact.setType(ContactType.EMAIL);
                         contact.setContact(data[i]);
-                    } else if (data[i].matches("[0-9]{3} [0-9]{3} [0-9]{3}")) {
+                    } else if (data[i].matches("[0-9]{3} [0-9]{3} [0-9]{3}|[0-9]{9}")) {
                         contact.setType(ContactType.PHONE);
                         contact.setContact(data[i]);
                     } else if (data[i].matches("[a-z]+")) {

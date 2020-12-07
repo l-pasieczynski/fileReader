@@ -1,17 +1,23 @@
 package com.example.fileReader.model;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
 @Entity
+@JacksonXmlRootElement(localName = "person")
 public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JacksonXmlProperty(localName = "name")
     private String name;
+    @JacksonXmlProperty(localName = "surname")
     private String surname;
+    @JacksonXmlProperty(localName = "age")
     @ColumnDefault("null")
     private int age;
 
