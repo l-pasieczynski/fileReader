@@ -26,8 +26,8 @@ public class CSVMapper {
         }
     }
 
-    private static Integer checkAge(String customer){
-        if(customer.split(",")[AGE_INDEX].isEmpty()){
+    private static Integer checkAge(String customer) {
+        if (customer.split(",")[AGE_INDEX].isEmpty()) {
             return 0;
         }
         return Integer.parseInt(customer.split(",")[AGE_INDEX]);

@@ -1,6 +1,7 @@
 package com.example.fileReader.web;
 
 import com.example.fileReader.application.CSVService;
+import com.example.fileReader.application.XMLService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,25 +9,29 @@ import org.springframework.web.bind.annotation.RestController;
 public class FileMapperController {
 
     private final CSVService csvService;
-    private final String CSVFilename = "src/main/resources/dane-osoby.txt";
+    private final XMLService xmlService;
 
-    public FileMapperController(CSVService csvService) {
+    private final String csvFilename = "src/main/resources/dane-osoby.txt";
+
+    public FileMapperController(CSVService csvService, XMLService xmlService) {
         this.csvService = csvService;
-    }
-
-    @GetMapping("/csv")
-    public void csvParser() {
-        csvService.csvMapToEntityAllFile(CSVFilename);
+        this.xmlService = xmlService;
     }
 
     @GetMapping("/csvline")
-    public void csvParserLineByLine(){
-        csvService.csvMapToEntityLineByLine(CSVFilename);
+    public void csvParserLineByLine() {
+        csvService.csvMapToEntityLineByLine(csvFilename);
     }
 
     @GetMapping("/xml")
     public void xmlParser() {
-        String filename = "src/main/resources/dane-osoby.xml";
+        String xmlFilename = "src/main/resources/dane-osoby.xml";
+        xmlService.xmlToEntity(xmlFilename);
+    }
+
+    @GetMapping("/csv")
+    public void csvParser() {
+        csvService.csvMapToEntityAllFile(csvFilename);
     }
 
 }

@@ -1,34 +1,20 @@
 package com.example.fileReader.model;
 
-import org.hibernate.annotations.ColumnDefault;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
-@Entity
-public class Customer {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@XmlRootElement(name = "person")
+public class Person {
     private String name;
     private String surname;
-    @ColumnDefault("null")
     private int age;
-
-    public Long getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
     }
 
     @XmlElement
-    public Customer setName(String name) {
+    public Person setName(String name) {
         this.name = name;
         return this;
     }
@@ -38,7 +24,7 @@ public class Customer {
     }
 
     @XmlElement
-    public Customer setSurname(String surname) {
+    public Person setSurname(String surname) {
         this.surname = surname;
         return this;
     }
@@ -48,7 +34,7 @@ public class Customer {
     }
 
     @XmlElement
-    public Customer setAge(int age) {
+    public Person setAge(int age) {
         this.age = age;
         return this;
     }
